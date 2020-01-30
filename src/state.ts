@@ -10,24 +10,6 @@ interface IMan {
 
 let man1: IMan = {name: 'Dima', height: 1.78}
 let man2: IMan = {name: 'Sasha', height: 1.8}
-interface ICar {
-    model: string;
-    year: number;
-    on: boolean;
-    turnOn: () => void;
-    rename: (model: string) => void
-}
-let car: ICar = {
-    model: 'Reno Stepway',
-    year: 2016,
-    on: false,
-    turnOn() {
-        this.on = true;
-    },
-    rename(model) {
-        this.model = model;
-    }
-}
 
 let peoples: IMan[] = [man1, man2]
 
@@ -54,6 +36,63 @@ let createMan = (name:string, height:number): IMan => {
 }
 
 
+
+interface ICar {
+    model: string;
+    year: number;
+    on: boolean;
+    turnOn: () => void;
+    rename: (model: string) => void
+}
+
+export interface IGarage{
+    addCar:(car:ICar)=>void;
+    logAllCarsNames:()=>void;
+    getAllCars:()=>ICar[];
+}
+
+export let createGarage = ():IGarage => {
+    let _cars:ICar[] =  [];
+
+    return {
+        addCar(car) {
+            _cars.push(car);
+        },
+        logAllCarsNames() {
+            console.log('Cars in the garage: ');
+            _cars.forEach(c => console.log(c.model));
+        },
+        getAllCars() {
+            return _cars;
+        }
+    }
+}
+
+
+
+
+
+
 console.log(toUpperCase(x))
+
+
+export class Car {
+    model:string;
+    year:number;
+    on:boolean=false;
+    constructor(model:string,year:number){
+        this.model = model;
+        this.year = year;
+    }
+    turnOn(){
+        this.on = true;
+    }
+    rename(model:string):string{
+        return this.model = model;
+    }
+
+}
+
+
 
 export default 15;
